@@ -1,19 +1,29 @@
 package com.andre.jwtauth.model.exception;
 
-public class CustomAuthException extends Exception{
+public abstract class CustomAuthException extends Throwable{
 
-    private String message;
+    private Integer httpCode;
 
-    @Override
-    public String getMessage() {
-        return message;
+    private String responseErrorMessage;
+
+    public Integer getHttpCode() {
+        return httpCode;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setHttpCode(Integer httpCode) {
+        this.httpCode = httpCode;
     }
 
-    public CustomAuthException(String message){
-        super(message);
+    public String getResponseErrorMessage() {
+        return responseErrorMessage;
+    }
+
+    public void setResponseErrorMessage(String responseErrorMessage) {
+        this.responseErrorMessage = responseErrorMessage;
+    }
+
+    public CustomAuthException(Integer httpCode, String responseErrorMessage) {
+        this.httpCode = httpCode;
+        this.responseErrorMessage = responseErrorMessage;
     }
 }
